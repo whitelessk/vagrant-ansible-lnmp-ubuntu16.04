@@ -1,0 +1,8 @@
+---
+- name: Remove Apache
+  become: yes
+  apt: pkg=apache2 state=absent
+
+- name: Install Nginx
+  become: yes
+  apt: pkg=nginx state=latest

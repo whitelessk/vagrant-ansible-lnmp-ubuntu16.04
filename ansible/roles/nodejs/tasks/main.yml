@@ -1,0 +1,10 @@
+- name: Install node repo
+  become: yes
+  shell: curl -sL https://deb.nodesource.com/setup | sudo bash -
+
+- name: Install node
+  become: yes
+  apt: pkg=nodejs state=latest
+
+
+

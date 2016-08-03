@@ -1,0 +1,54 @@
+---
+- name: Update apt
+  become: yes
+  apt: update_cache=yes
+
+- name: Install System Packages
+  become: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - curl
+    - wget
+    - python-software-properties
+
+- name: Install Extra Packages
+  become: yes
+  apt: pkg={{ item }} state=latest
+  with_items: server.packages
+  when: server.packages is defined
+
+
+# install ntp
+- name: Install ntp
+  become: yes
+  apt: pkg=ntp state=latest
+- name: Install ntpdate
+  become: yes
+  apt: pkg=ntpdate state=latest
+- name: service ntp stop
+  shell: service ntp stop
+  become: yes
+- name: ntpdate pool.ntp.org
+  shell: ntpdate pool.ntp.org
+  become: yes
+- name: service ntp restart
+  shell: service ntp restart
+  become: yes
+
+
+
+- name: Configure the timezone
+  become: yes
+  template: src=timezone.tpl dest=/etc/timezone
+
+- name: More Configure the timezone
+  become: yes
+  file: src=/usr/share/zoneinfo/{{server.timezone}} dest=/etc/localtime state=link force=yes backup=yes
+
+- name: Set default system language pack
+  shell: locale-gen {{server.locale}}
+  become: yes
+
+- name: Configure the locale
+  become: yes
+  template: src=locale.tpl dest=/etc/default/locale

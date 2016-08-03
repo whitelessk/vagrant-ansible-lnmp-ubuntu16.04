@@ -1,0 +1,23 @@
+---
+server:
+    install: '1'
+    packages: [git, mc, htop]
+    timezone: Europe/Vilnius
+    locale: en_US.UTF-8
+vagrant_local:
+    install: '1'
+    vm: {
+            hostname: devmain,
+        }
+nginx:
+    install: '1'
+    docroot: /home/vagrant/Code/bunker.dev
+    servername: bunker.dev
+mysql:
+    install: '1'
+    root_password: secret
+#    database: test
+#    user: test
+#    password: test
+#    dump: ''
+
