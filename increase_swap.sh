@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # size of swapfile in megabytes
-swapsize=1000
+swapsize=2000
 
 # does the swap file already exist?
 grep -q "swapfile" /etc/fstab
