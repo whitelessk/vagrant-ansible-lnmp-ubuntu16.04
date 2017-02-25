@@ -17,7 +17,6 @@
   with_items:
     - php-cli
     - php-intl
-    - php-intl
     - php-mcrypt
     - php-mysql
     - php-curl
@@ -26,6 +25,8 @@
     - php-mbstring
     - php-opcache
     - php-dom
+    - php-bz2
+    - php-geoip
 
 - name: Configure PHP 7 settings
   become: yes
