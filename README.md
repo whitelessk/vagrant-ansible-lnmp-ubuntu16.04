@@ -1,3 +1,8 @@
+# vagrant commands
+vagrant up
+vagrant halt
+
+
 # vagrant-ansible-lnmp
 Vagrant Ansible LNMP
 
