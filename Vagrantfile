@@ -59,14 +59,13 @@ Vagrant.configure("2") do |config|
     end
 
 
-    #config.vm.synced_folder "/Users/mykola/Code", "/home/ubuntu/Code", type: "nfs"
-    config.vm.synced_folder '/Users/mykola/Code', '/home/ubuntu/Code', type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1']
+    config.vm.synced_folder '/Users/mykola/Code', '/home/ubuntu/Code', owner: "www-data", group: "www-data"
 
-    config.vm.synced_folder "./conf/nginx/sites-enabled", "/etc/nginx/sites-enabled", type: "nfs"
+    config.vm.synced_folder "./conf/nginx/sites-enabled", "/etc/nginx/sites-enabled"
     
     # While install vm, need to disable mount mysql
-    config.vm.synced_folder "./data/mysql", "/var/lib/mysql", type: "nfs", id: "mysql"
+    config.vm.synced_folder "./data/mysql", "/var/lib/mysql", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1', 'nolock', 'async']
 
-    config.vm.synced_folder "./", "/vagrant", type: "nfs"
+    config.vm.synced_folder "./", "/vagrant"
 
 end
